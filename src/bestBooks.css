@@ -1,0 +1,15 @@
+.carousel {
+    width: 700px;
+    height: 700px;
+    margin: auto;
+}
+
+img {
+    height: 700px;
+    width: 700px;
+    filter: blur(3px);
+}
+
+h3, p {
+    background-color: rgba(36, 36, 36, 0.568);
+}
