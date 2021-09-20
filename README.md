@@ -1,7 +1,7 @@
 # Can of Books
 
 **Author**: Hasnaa Al-Habahbeh
-**Version**: 1.0.0
+**Version**: 2.0.0
 
 ## Overview
 
@@ -24,7 +24,8 @@ You can use this link to visit the app: **NETLIFY LINK**. Or, you can build it o
 
 ## Change Log
 
-19-00-2021 10:00pm - Application now can render 3 books coming from my database.
+19-09-2021 10:00pm - Application now can render 3 books coming from my database.
+21-09-2021 01:50am - Application now can handle adding/deleting books to/from the database.
 
 ## Estimates
 
@@ -38,6 +39,15 @@ Finish time: 10:00 pm
 
 Actual time needed to complete: 7 hours
 
+### Adding/Deleting Books
+
+Estimate of time needed to complete: 2 hours
+
+Start time: 10:00 pm
+
+Finish time: 01:50 am
+
+Actual time needed to complete: 4 hours
 
 ## Credit and Collaborations
 
