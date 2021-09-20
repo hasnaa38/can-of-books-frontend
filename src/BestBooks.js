@@ -7,7 +7,7 @@ class BestBooks extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      books: []
+      booksList: []
     }
   }
 
@@ -15,10 +15,8 @@ class BestBooks extends React.Component {
   componentDidMount = () => {
     axios.get(`${process.env.REACT_APP_API_URL}/books`).then(res => {
       this.setState({
-        books: res.data,
+        booksList: res.data,
       });
-      console.log('Hi :)');
-      console.log('This is what you got', res.data);
     }).catch(error => {
       console.log('error');
       console.log(error);
@@ -26,56 +24,31 @@ class BestBooks extends React.Component {
   }
 
   render() {
-
-    /* TODO: render user's books in a Carousel */
-
     return (
       <>
+      <br/><br/>
         <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
-
-        {this.state.books.length ? (
+        {this.state.booksList.length ? (
           <>
-            <Carousel>
-              <Carousel.Item>
-                <img
-                  className="d-block"
-                  src={this.state.books[0].image}
-                  alt="slide"
-                />
-                <Carousel.Caption>
-                  <h3>{this.state.books[0].title}</h3>
-                  <p>Book Description: {this.state.books[0].description}</p>
-                  <p>Book Status: {this.state.books[0].status}</p>
-                  <p>Email: {this.state.books[0].email}</p>
-                </Carousel.Caption>
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block"
-                  src={this.state.books[1].image}
-                  alt="slide"
-                />
-                <Carousel.Caption>
-                  <h3>{this.state.books[1].title}</h3>
-                  <p>Book Description: {this.state.books[1].description}</p>
-                  <p>Book Status: {this.state.books[1].status}</p>
-                  <p>Email: {this.state.books[1].email}</p>
-                </Carousel.Caption>
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block"
-                  src={this.state.books[2].image}
-                  alt="slide"
-                />
-                <Carousel.Caption>
-                  <h3>{this.state.books[2].title}</h3>
-                  <p>Book Description: {this.state.books[2].description}</p>
-                  <p>Book Status: {this.state.books[2].status}</p>
-                  <p>Email: {this.state.books[2].email}</p>
-                </Carousel.Caption>
-              </Carousel.Item>
+          <br/><br/><br/>
+          <Carousel>
+            {this.state.booksList.map((book) => (
+                <Carousel.Item interval={1000}>
+                  <img
+                    className=" w-100"
+                    src={book.image}
+                    alt="First slide"
+                  />
+                  <Carousel.Caption>
+                    <h3>{book.title}</h3>
+                    <p>{book.description}</p>
+                    <p>Book Status: {book.status}</p>
+                    <p>Book ID: {book._id}</p>
+                    <p>email: {book.email}</p>
+                  </Carousel.Caption>
+                </Carousel.Item>))}
             </Carousel>
+            <br/><br/><br/>
           </>
         ) : (
           <h3>No Books Found :(</h3>

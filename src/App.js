@@ -8,6 +8,7 @@ import {
   Route
 } from "react-router-dom";
 import BestBooks from './BestBooks';
+import { Button } from 'react-bootstrap';
 
 class App extends React.Component {
 
@@ -35,7 +36,9 @@ class App extends React.Component {
       <>
         <Router>
           <Header user={this.state.user} onLogout={this.logoutHandler} />
-          <BestBooks/> 
+          <BestBooks />
+          <Button variant="success">Add a Book</Button>{' '}
+          <Button variant="danger">Remove a Book</Button>
           <Switch>
             <Route exact path="/">
               {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}

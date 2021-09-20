@@ -4,12 +4,18 @@
     margin: auto;
 }
 
-img {
+.carousel img {
     height: 700px;
     width: 700px;
     filter: blur(3px);
 }
 
-h3, p {
+.carousel h3, .carousel p {
     background-color: rgba(36, 36, 36, 0.568);
+}
+
+.card img {
+    height: 400px;
+    width: 300px;
+    margin: auto;
 }
