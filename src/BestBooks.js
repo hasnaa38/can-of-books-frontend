@@ -24,7 +24,9 @@ class BestBooks extends React.Component {
   // Getting the list
 
   componentDidMount = () => {
-    axios.get(`${process.env.REACT_APP_API_URL}/books`).then(res => {
+    //`${process.env.REACT_APP_API_URL}/books`
+    
+    axios.get('https://can-of-books-h.herokuapp.com/books').then(res => {
       this.setState({
         booksList: res.data,
       });
@@ -79,7 +81,8 @@ class BestBooks extends React.Component {
     e.preventDefault();
     let config = {
       method: "POST",
-      baseURL: `${process.env.REACT_APP_API_URL}`,
+      // baseURL: `${process.env.REACT_APP_API_URL}`,
+      baseURL: 'https://can-of-books-h.herokuapp.com',
       url: '/add-book',
       data: this.state.newBookInput
     }
@@ -107,7 +110,8 @@ class BestBooks extends React.Component {
     console.log(bookID);
     let config = {
       method: "DELETE",
-      baseURL: `${process.env.REACT_APP_API_URL}`,
+      // baseURL: `${process.env.REACT_APP_API_URL}`,
+      baseURL: 'https://can-of-books-h.herokuapp.com',
       url: `/delete-book/${bookID}`,
     };
     axios(config).then(res => {
