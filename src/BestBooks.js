@@ -161,7 +161,12 @@ class BestBooks extends React.Component {
         errorMsg: true,
         showUpdateModal: false,
       });
-    })
+    }).then(this.refreshPage);
+  }
+  
+
+  refreshPage = () => {
+    window.location.reload();
   }
 
   render() {
