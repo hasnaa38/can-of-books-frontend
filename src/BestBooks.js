@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import { Carousel, Button, Alert } from 'react-bootstrap';
+import { Carousel, Button, Alert, Row, Col, } from 'react-bootstrap';
 import BookFormModal from './components/BookFormModal';
+import UpdateBookModal from './components/UpdateBookModal';
 import './bestBooks.css';
 
 class BestBooks extends React.Component {
@@ -10,6 +11,7 @@ class BestBooks extends React.Component {
     this.state = {
       booksList: [],
       showModal: false,
+      showUpdateModal: false,
       errorMsg: false,
       newBookInput: {
         title: '',
@@ -17,7 +19,9 @@ class BestBooks extends React.Component {
         image: '',
         status: '',
         email: ''
-      }
+      },
+      currentBook: {},
+      updatedBookInput: {}
     }
   }
 
@@ -25,7 +29,7 @@ class BestBooks extends React.Component {
 
   componentDidMount = () => {
     //`${process.env.REACT_APP_API_URL}/books`
-    
+
     axios.get('https://can-of-books-h.herokuapp.com/books').then(res => {
       this.setState({
         booksList: res.data,
@@ -46,16 +50,17 @@ class BestBooks extends React.Component {
     });
   };
 
-  handleDCmodalOpen = () => {
+  handleUpdateModalOpen = (book) => {
     this.setState({
-      showDCModal: true,
+      showUpdateModal: true,
+      currentBook: book,
     });
   };
 
   modalHandleClose = (e) => {
     this.setState({
       showModal: false,
-      showDCModal: false
+      showUpdateModal: false
     });
   };
 
@@ -73,6 +78,17 @@ class BestBooks extends React.Component {
         ...this.state.newBookInput,
         [e.target.name]: e.target.value,
       }
+    });
+  }
+
+  //Update form inputs:
+  changeUpdateInput = (e) => {
+    this.setState({
+      updatedBookInput: {
+        ...this.state.currentBook,
+        [e.target.name]: e.target.value,
+      },
+      showUpdateModal: true
     });
   }
 
@@ -94,7 +110,6 @@ class BestBooks extends React.Component {
           res.data
         ],
         showModal: false,
-        showDCModal: false
       });
     }).catch(error => {
       console.log(error);
@@ -127,13 +142,42 @@ class BestBooks extends React.Component {
     console.log(bookID);
   }
 
+  //Updating books:
+  handleBookUpdate = () => {
+    let config = {
+      method: "PUT",
+      baseURL: 'https://can-of-books-h.herokuapp.com',
+      url: `/update-book/${this.state.updatedBookInput._id}`,
+      data: this.state.updatedBookInput
+    };
+    axios(config).then(res => {
+      this.setState({
+        booksList: res.data,
+        showUpdateModal: false,
+      });
+    }).catch(error => {
+      console.log(error);
+      this.setState({
+        errorMsg: true,
+        showUpdateModal: false,
+      });
+    })
+  }
+
   render() {
     return (
       <>
         <br /><br />
-        <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
-        <br/>
-        <Button centered variant="success" onClick={this.modalHandleOpen}>Add a Book</Button>
+        <Row>
+          <Col xs={10}>
+            <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
+          </Col>
+          <Col xs={2}>
+            <Button centered variant="success" onClick={this.modalHandleOpen}>Add a Book</Button>
+          </Col>
+        </Row>
+        {this.state.showUpdateModal && <UpdateBookModal showUpdateModal={this.state.showUpdateModal} closeModal={this.modalHandleClose}
+        bookInfo={this.state.currentBook} changeUpdateInput={this.changeUpdateInput} updateBook={this.handleBookUpdate}/>}
         {this.state.booksList.length ? (
           <>
             <br /><br /><br />
@@ -151,8 +195,8 @@ class BestBooks extends React.Component {
                     <p>Book Status: {book.status}</p>
                     <p>Book ID: {book._id}</p>
                     <p>email: {book.email}</p>
-                    <Button variant="danger" onClick={()=>this.handleBookDelete(book._id)}>Remove This Book</Button>
-
+                    <Button variant="info" onClick={() => this.handleUpdateModalOpen(book)}>Update Book Details</Button>{' '}
+                    <Button variant="danger" onClick={() => this.handleBookDelete(book._id)}>Remove This Book</Button>
                   </Carousel.Caption>
                 </Carousel.Item>))}
             </Carousel>
@@ -162,7 +206,7 @@ class BestBooks extends React.Component {
           <h3>No Books Found :(</h3>
         )}
         {this.state.showModal && <BookFormModal showModal={this.state.showModal} closeModal={this.modalHandleClose} changeInput={this.handleChangingInput} addBook={this.handleAddBook} />}
-        {this.state.errorMsg && <Alert> Sadly, an error has occurred :(</Alert>} 
+        {this.state.errorMsg && <Alert> Sadly, an error has occurred :(</Alert>}
       </>
     )
   }
