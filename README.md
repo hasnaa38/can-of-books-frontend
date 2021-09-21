@@ -26,7 +26,7 @@ You can use this link to visit the app: **NETLIFY LINK**. Or, you can build it o
 
 * 19-09-2021 10:00pm - Application now can render 3 books coming from my database.
 * 21-09-2021 01:50am - Application now can handle adding/deleting books to/from the database.
-* 22-09-2021 10:25am - Application now can handle updating books info.
+* 22-09-2021 10:25pm - Application now can handle updating books info.
 
 ## Estimates
 
