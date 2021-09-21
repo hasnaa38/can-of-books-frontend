@@ -16,7 +16,7 @@ class BestBooks extends React.Component {
       newBookInput: {
         title: '',
         description: '',
-        image: '',
+        image: 'https://wallpaper.dog/large/343629.jpg',
         status: '',
         email: ''
       },
@@ -138,8 +138,7 @@ class BestBooks extends React.Component {
       this.setState({
         errorMsg: true,
       });
-    });
-    console.log(bookID);
+    }).then(this.refreshPage);
   }
 
   //Updating books:
