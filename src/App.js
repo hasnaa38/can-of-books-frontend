@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from './Header';
 import Footer from './Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -8,7 +7,7 @@ import BestBooks from './BestBooks';
 import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
 import Profile from './Profile';
-import { Button, Navbar, NavItem, OverlayTrigger, Popover, Card, Image } from 'react-bootstrap';
+import { Navbar, NavItem, OverlayTrigger, Popover, Card, Image } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import './header.css';
 
