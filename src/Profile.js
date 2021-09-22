@@ -1,12 +1,20 @@
-import { Component } from "react";
+import React, { Component } from 'react'
+import { Card } from "react-bootstrap";
 
 class Profile extends Component {
-
   render() {
-    /* TODO: render information about logged in user */
-    /* STRETCH TODO: if no logged in user then redirect home */
-    return <p>Profile page coming soon</p>
+    return (
+      <Card>
+        <Card.Body>
+          <Card.Title>Profile</Card.Title>
+          <Card.Text>
+            Hello dear user, you must be logged in to see this page, but you can't.
+            Ciao 
+          </Card.Text>
+        </Card.Body>
+      </Card>
+    )
   }
-};
+}
 
-export default Profile;
+export default Profile

@@ -26,7 +26,8 @@ You can use this link to visit the app: **NETLIFY LINK**. Or, you can build it o
 
 * 19-09-2021 10:00pm - Application now can render 3 books coming from my database.
 * 21-09-2021 01:50am - Application now can handle adding/deleting books to/from the database.
-* 22-09-2021 10:25am - Application now can handle updating books info.
+* 22-09-2021 10:25pm - Application now can handle updating books info.
+* 23-09-2021 10:00pm - Application now can authenticate users using OAuth.
 
 ## Estimates
 
@@ -59,6 +60,16 @@ Start time: 08:00 pm
 Finish time: 10:25 pm
 
 Actual time needed to complete: 2:30 hours
+
+### Authentication using OAuth0
+
+Estimate of time needed to complete: 1 hour
+
+Start time: 08:00 pm
+
+Finish time: 09:50 pm
+
+Actual time needed to complete: 1:50 hour
 
 ## Credit and Collaborations
 

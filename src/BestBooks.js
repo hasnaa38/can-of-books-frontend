@@ -34,6 +34,7 @@ class BestBooks extends React.Component {
       this.setState({
         booksList: res.data,
       });
+      console.log(this.props.authUserName)
     }).catch(error => {
       console.log(error);
       this.setState({
@@ -197,7 +198,6 @@ class BestBooks extends React.Component {
                     <h3>{book.title}</h3>
                     <p>{book.description}</p>
                     <p>Book Status: {book.status}</p>
-                    <p>Book ID: {book._id}</p>
                     <p>email: {book.email}</p>
                     <Button variant="info" onClick={() => this.handleUpdateModalOpen(book)}>Update Book Details</Button>{' '}
                     <Button variant="danger" onClick={() => this.handleBookDelete(book._id)}>Remove This Book</Button>
